@@ -60,20 +60,20 @@ A aplicação permite:
 
 ## 🧠 Etapas do Desenvolvimento
 
-O projeto foi desenvolvido seguindo as seguintes etapas:
+O projeto foi desenvolvido seguindo as etapas abaixo, conforme ordem dos commits:
 
-1. Configuração do projeto com Vite + React + TypeScript
-2. Implementação do upload e leitura do Excel
-3. Limpeza e normalização dos dados
-4. Tipagem dos dados com TypeScript
-5. Criação das métricas e agregações
-6. Construção dos gráficos de visualização
-7. Implementação de filtros reativos
-8. Criação do ranking de produtos
-9. Melhoria do layout e responsividade
-10. Tratamento de erros e estados da aplicação
-11. Otimização de performance com useMemo
-12. Persistência dos dados no navegador
+1. Setup inicial do projeto React com Vite
+2. Implementação do upload e leitura de arquivo Excel
+3. Tipagem e limpeza dos dados do Excel
+4. Implementação dos cards de métricas do dashboard
+5. Implementação dos gráficos de vendas por categoria e por mês
+6. Implementação de filtros reativos e automáticos com ordenação de meses
+7. Implementação da tabela de produtos mais vendidos com ranking
+8. Implementação do layout, header, upload section e filter bar
+9. Padronização dos nomes para português sem acento, melhorias de responsividade, UX, mensagens de erro, gráficos e persistência dos dados
+10. Correção da sincronização dos selects de filtro
+
+Cada etapa foi registrada em commits para facilitar o acompanhamento do desenvolvimento e garantir transparência na evolução do projeto.
 
 ---
 
