@@ -152,6 +152,8 @@ function App() {
           <FilterBar
             categorias={categorias}
             meses={meses}
+            categoriaFiltro={categoriaFiltro}
+            mesFiltro={mesFiltro}
             setCategoriaFiltro={setCategoriaFiltro}
             setMesFiltro={setMesFiltro}
           />
@@ -169,7 +171,9 @@ function App() {
             }}>
               Nenhum dado encontrado para os filtros selecionados
             </div>
-          ) : (
+          ) : null}
+
+          {dadosFiltrados.length > 0 && (
             <>
               {/* métricas responsivas */}
               <div

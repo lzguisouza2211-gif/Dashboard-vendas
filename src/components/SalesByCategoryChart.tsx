@@ -18,14 +18,16 @@ type Props = {
 export function SalesByCategoryChart({ dados }: Props) {
   const data = vendasPorCategoria(dados);
 
-  // paleta de cores do dashboard
-  const COLORS = [
-    "#3b82f6", // azul
-    "#10b981", // verde
-    "#f59e0b", // amarelo
-    "#8b5cf6", // roxo
-    "#ef4444"  // vermelho
-  ];
+  // Mapa de cores fixo por categoria
+  const COR_CATEGORIA: Record<string, string> = {
+    "Assinaturas": "#3b82f6", // azul
+    "Outros": "#8b5cf6",      // roxo
+    "Produtos": "#f59e0b",    // amarelo
+    "Servicos": "#10b981",    // verde
+    "Serviços": "#10b981",    // verde (garantia)
+  };
+  // Cor padrão se não encontrar
+  const COR_PADRAO = "#ef4444"; // vermelho
 
 
   // Mostra porcentagem DENTRO, centralizado
@@ -116,12 +118,15 @@ export function SalesByCategoryChart({ dados }: Props) {
             label={renderLabel}
             labelLine={true}
           >
-            {data.map((_, index) => (
-              <Cell
-                key={index}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
+            {data.map((d, index) => {
+              const cat = padronizarCategoria(d.categoria);
+              return (
+                <Cell
+                  key={index}
+                  fill={COR_CATEGORIA[cat] || COR_PADRAO}
+                />
+              );
+            })}
           </Pie>
 
           <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(59,130,246,0.08)" }} />

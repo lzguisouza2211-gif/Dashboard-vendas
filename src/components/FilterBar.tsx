@@ -1,6 +1,8 @@
 type Props = {
   categorias: string[];
   meses: string[];
+  categoriaFiltro: string;
+  mesFiltro: string;
   setCategoriaFiltro: (v: string) => void;
   setMesFiltro: (v: string) => void;
 };
@@ -8,6 +10,8 @@ type Props = {
 export function FilterBar({
   categorias,
   meses,
+  categoriaFiltro,
+  mesFiltro,
   setCategoriaFiltro,
   setMesFiltro
 }: Props) {
@@ -35,6 +39,7 @@ export function FilterBar({
       <strong style={{ minWidth: 90 }}>Filtros</strong>
 
       <select
+        value={categoriaFiltro}
         onChange={(e) => setCategoriaFiltro(e.target.value)}
         style={{
           background: "#1f2937",
@@ -56,6 +61,7 @@ export function FilterBar({
       </select>
 
       <select
+        value={mesFiltro}
         onChange={(e) => setMesFiltro(e.target.value)}
         style={{
           background: "#1f2937",
