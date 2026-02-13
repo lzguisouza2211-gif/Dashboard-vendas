@@ -7,12 +7,12 @@ export function MetricCard({ title, value }: Props) {
   return (
     <div
       style={{
+        flex: 1,
         padding: "20px",
-        borderRadius: "10px",
+        borderRadius: "12px",
         background: "#1f2937",
         color: "white",
-        minWidth: "200px",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+        boxShadow: "0 6px 15px rgba(0,0,0,0.25)"
       }}
     >
       <p style={{ opacity: 0.7 }}>{title}</p>

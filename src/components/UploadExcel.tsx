@@ -31,8 +31,41 @@ export function UploadExcel({ onDataLoaded }: Props) {
     };
 
     return (
-        <div style={{ marginBottom: '20px' }}>
-            <input type="file" accept=".xlsx, .xls" onChange={handleFile} />
-        </div>
-    );
+    <div
+      style={{
+        background: "#111827",
+        padding: "30px",
+        borderRadius: "16px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "16px",
+        border: "1px solid #1f2937"
+      }}
+    >
+      <h2 style={{ margin: 0 }}>Envie um arquivo Excel</h2>
+
+      <p style={{ margin: 0, color: "#9ca3af" }}>
+        Carregue dados para visualizar o dashboard
+      </p>
+
+      <label
+        style={{
+          background: "#2563eb",
+          padding: "12px 24px",
+          borderRadius: "8px",
+          cursor: "pointer",
+          fontWeight: 600
+        }}
+      >
+        Escolher arquivo
+        <input
+          type="file"
+          accept=".xlsx,.xls"
+          onChange={handleFile}
+          style={{ display: "none" }}
+        />
+      </label>
+    </div>
+  );
 }

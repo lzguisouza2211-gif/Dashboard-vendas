@@ -38,18 +38,21 @@ export function vendasPorCategoria(dados: Venda[]) {
 
 // vendas por mês (para gráfico barra)
 export function vendasPorMes(dados: Venda[]) {
-  const agrupado: Record<string, number> = {};
+  const ordemMeses = [
+    "Jan","Fev","Mar","Abr","Mai","Jun",
+    "Jul","Ago","Set","Out","Nov","Dez"
+  ];
+
+  const mapa: Record<string, number> = {};
 
   dados.forEach((item) => {
-    if (!agrupado[item.mes]) {
-      agrupado[item.mes] = 0;
-    }
-
-    agrupado[item.mes] += item.valor;
+    mapa[item.mes] = (mapa[item.mes] || 0) + item.valor;
   });
 
-  return Object.entries(agrupado).map(([mes, total]) => ({
-    mes,
-    total,
-  }));
+  return Object.entries(mapa)
+    .map(([mes, total]) => ({ mes, total }))
+    .sort(
+      (a, b) => ordemMeses.indexOf(a.mes) - ordemMeses.indexOf(b.mes)
+    );
 }
+

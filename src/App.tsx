@@ -12,8 +12,17 @@ import {
 import { MetricCard } from "./components/MetricCard";
 import { SalesByCategoryChart } from "./components/SalesByCategoryChart";
 import { SalesByMonthChart } from "./components/SalesByMonthChart";
-
 import { TopProductsTable } from "./components/TopProductsTable";
+
+import { formatCurrency } from "./utils/format";
+
+import { Header } from "./components/Header";
+import { FilterBar } from "./components/FilterBar";
+
+import { Loading } from "./components/Loading";
+import { EmptyState } from "./components/EmptyState";
+
+
 
 function App() {
   // dados base
@@ -22,6 +31,8 @@ function App() {
   // estados de filtro
   const [categoriaFiltro, setCategoriaFiltro] = useState("todas");
   const [mesFiltro, setMesFiltro] = useState("todos");
+  const [loading, setLoading] = useState(false);
+
 
   // dados filtrados
   const dadosFiltrados = dados.filter((item) => {
@@ -34,85 +45,97 @@ function App() {
     return matchCategoria && matchMes;
   });
 
-  // categorias e meses únicos (automáticos)
+  // categorias únicas
   const categorias = [...new Set(dados.map((d) => d.categoria))];
+
+  // meses ordenados
   const ordemMeses = [
-  "Jan","Fev","Mar","Abr","Mai","Jun",
-  "Jul","Ago","Set","Out","Nov","Dez"
+    "Jan","Fev","Mar","Abr","Mai","Jun",
+    "Jul","Ago","Set","Out","Nov","Dez"
   ];
 
   const meses = [...new Set(dados.map((d) => d.mes))]
     .sort((a, b) => ordemMeses.indexOf(a) - ordemMeses.indexOf(b));
 
-
-  // métricas baseadas nos dados filtrados
+  // métricas
   const receitaTotal = calcularReceitaTotal(dadosFiltrados);
   const totalPedidos = calcularTotalPedidos(dadosFiltrados);
   const ticketMedio = calcularTicketMedio(dadosFiltrados);
 
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>Dashboard de Vendas</h1>
+return (
+  <div
+    style={{
+      width: "100%",
+      padding: "30px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "30px"
+    }}
+  >
+    <Header />
 
-      {/* upload */}
-      <UploadExcel onDataLoaded={(rows) => setDados(cleanData(rows))} />
+    <UploadExcel
+      onDataLoaded={(rows) => {
+        setLoading(true);
 
-      {/* filtros */}
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-        {/* filtro categoria */}
-        <select onChange={(e) => setCategoriaFiltro(e.target.value)}>
-          <option value="todas">Todas categorias</option>
+        setTimeout(() => {
+          setDados(cleanData(rows));
+          setLoading(false);
+        }, 800);
+      }}
+    />
 
-          {categorias.map((categoria) => (
-            <option key={categoria} value={categoria}>
-              {categoria}
-            </option>
-          ))}
-        </select>
+    {/* estados visuais */}
+    {loading && <Loading />}
+    {!loading && !dados.length && <EmptyState />}
 
-        {/* filtro mês */}
-        <select onChange={(e) => setMesFiltro(e.target.value)}>
-          <option value="todos">Todos meses</option>
-
-          {meses.map((mes) => (
-            <option key={mes} value={mes}>
-              {mes}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* métricas */}
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-        <MetricCard
-          title="Receita Total"
-          value={`R$ ${receitaTotal.toFixed(2)}`}
+    {/* dashboard só aparece quando tem dados */}
+    {!loading && dados.length > 0 && (
+      <>
+        <FilterBar
+          categorias={categorias}
+          meses={meses}
+          setCategoriaFiltro={setCategoriaFiltro}
+          setMesFiltro={setMesFiltro}
         />
 
-        <MetricCard
-          title="Total de Pedidos"
-          value={totalPedidos}
-        />
+        {/* métricas */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: "20px"
+          }}
+        >
+          <MetricCard
+            title="Receita Total"
+            value={formatCurrency(receitaTotal)}
+          />
+          <MetricCard title="Total de Pedidos" value={totalPedidos} />
+          <MetricCard
+            title="Ticket Médio"
+            value={formatCurrency(ticketMedio)}
+          />
+        </div>
 
-        <MetricCard
-          title="Ticket Médio"
-          value={`R$ ${ticketMedio.toFixed(2)}`}
-        />
-      </div>
+        {/* gráficos */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "30px"
+          }}
+        >
+          <SalesByCategoryChart dados={dadosFiltrados} />
+          <SalesByMonthChart dados={dadosFiltrados} />
+        </div>
 
-      {/* gráficos */}
-      <div style={{ display: "flex", gap: "40px", marginTop: "40px" }}>
-        <SalesByCategoryChart dados={dadosFiltrados} />
-        <SalesByMonthChart dados={dadosFiltrados} />
-      </div>
-
-      {/* tabela de produtos */}
-      <div>
         <TopProductsTable dados={dadosFiltrados} />
+      </>
+    )}
+  </div>
+);
 
-      </div>
-    </div>
-  );
 }
 
 export default App;
