@@ -1,73 +1,180 @@
-# React + TypeScript + Vite
+# 📊 Dashboard de Vendas — Avaliação Técnica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web desenvolvida para upload de arquivos Excel e geração de um dashboard interativo de vendas, com análise, limpeza e visualização de dados.
 
-Currently, two official plugins are available:
+O sistema permite importar dados de vendas, processar informações automaticamente e apresentar métricas e gráficos com filtros dinâmicos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto foi desenvolvido como solução para uma avaliação técnica de desenvolvedor front-end.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Demonstração do Projeto
 
-## Expanding the ESLint configuration
+A aplicação permite:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Upload de arquivos Excel (.xlsx, .xls)
+- Processamento e limpeza automática dos dados
+- Visualização de métricas de vendas
+- Gráficos interativos
+- Filtros dinâmicos
+- Ranking de produtos mais vendidos
+- Persistência dos dados no navegador
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🎯 Funcionalidades
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 📂 Upload de Excel
+- Leitura de arquivos `.xlsx` e `.xls`
+- Validação do tipo de arquivo
+- Tratamento de erro de leitura
+- Processamento automático dos dados
+- Limpeza e normalização das informações
+
+### 📊 Dashboard de Vendas
+- Receita total
+- Total de pedidos
+- Ticket médio
+- Ranking de produtos mais vendidos
+
+### 📈 Visualização de Dados
+- Gráfico de vendas por categoria
+- Gráfico de vendas por mês
+- Tabela com ranking de produtos
+- Percentuais e valores formatados em Real (R$)
+
+### 🎛 Filtros Dinâmicos
+- Filtro por categoria
+- Filtro por mês
+- Atualização automática das métricas e gráficos
+
+### ⚡ Experiência do Usuário
+- Loading durante processamento do arquivo
+- Tratamento de erros de upload
+- Estado vazio quando não há dados
+- Mensagem quando filtros não retornam resultados
+- Persistência de dados com LocalStorage
+- Interface responsiva
+
+---
+
+## 🧠 Etapas do Desenvolvimento
+
+O projeto foi desenvolvido seguindo as seguintes etapas:
+
+1. Configuração do projeto com Vite + React + TypeScript
+2. Implementação do upload e leitura do Excel
+3. Limpeza e normalização dos dados
+4. Tipagem dos dados com TypeScript
+5. Criação das métricas e agregações
+6. Construção dos gráficos de visualização
+7. Implementação de filtros reativos
+8. Criação do ranking de produtos
+9. Melhoria do layout e responsividade
+10. Tratamento de erros e estados da aplicação
+11. Otimização de performance com useMemo
+12. Persistência dos dados no navegador
+
+---
+
+## 🏗 Arquitetura e Organização
+
+O projeto foi estruturado utilizando componentização e separação de responsabilidades.
+
+```
+src/
+  components/
+    Header.tsx
+    UploadExcel.tsx
+    FilterBar.tsx
+    MetricCard.tsx
+    SalesByCategoryChart.tsx
+    SalesByMonthChart.tsx
+    TopProductsTable.tsx
+    Loading.tsx
+    EmptyState.tsx
+
+  utils/
+    cleanData.ts
+    metrics.ts
+    format.ts
+    productRanking.ts
+
+  types/
+    Venda.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠 Tecnologias Utilizadas
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React
+- TypeScript
+- Vite
+- Recharts — gráficos
+- SheetJS / XLSX — leitura de Excel
+- CSS Flexbox e Grid
+- LocalStorage — persistência de dados
+
+---
+
+## ▶️ Como Executar o Projeto
+
+### 1. Clonar repositório
+
+```bash
+git clone <url-do-repositorio>
 ```
+
+### 2. Acessar pasta
+
+```bash
+cd dashboard-vendas
+```
+
+### 3. Instalar dependências
+
+```bash
+npm install
+```
+
+### 4. Executar aplicação
+
+```bash
+npm run dev
+```
+
+Acesse:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 📌 Decisões Técnicas
+
+- Uso de TypeScript para maior segurança e previsibilidade
+- Componentização para melhor organização do código
+- Separação da lógica de negócio em utilitários
+- Normalização de dados para evitar inconsistências
+- Uso de useMemo para otimização de performance
+- Persistência de dados com LocalStorage
+- Interface responsiva com Flexbox e Grid
+
+---
+
+## 📱 Responsividade
+
+A interface foi construída para funcionar em diferentes tamanhos de tela:
+
+- Layout adaptável
+- Gráficos reorganizados em telas menores
+- Cards reorganizados automaticamente
+- Evita overflow horizontal
+
+---
+
+## 👨‍💻 Autor
+
+Projeto desenvolvido por Guilherme como avaliação técnica para vaga de desenvolvedor front-end.
