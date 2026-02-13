@@ -8,12 +8,15 @@ type Props = {
 };
 
 export function TopProductsTable({ dados }: Props) {
-  const produtos = calcularTopProdutos(dados);
   // Paginação simples
   const LIMITE_LINHAS = 10;
   const [pagina, setPagina] = useState(1);
+  const produtos = calcularTopProdutos(dados);
   const totalPaginas = Math.ceil(produtos.length / LIMITE_LINHAS);
   const produtosPagina = produtos.slice((pagina - 1) * LIMITE_LINHAS, pagina * LIMITE_LINHAS);
+  // Se todos os produtos têm receita zero, não exibe a tabela
+  const todosReceitaZero = produtos.length > 0 && produtos.every((p) => p.receita === 0);
+  if (produtos.length === 0 || todosReceitaZero) return null;
 
   return (
     <div
@@ -43,14 +46,34 @@ export function TopProductsTable({ dados }: Props) {
           </tr>
         </thead>
         <tbody>
-          {produtosPagina.map((p) => (
-            <tr key={p.produto} style={{ borderBottom: "1px solid #374151" }}>
+          {produtosPagina.map((p, idx) => (
+            <tr
+              key={p.produto}
+              className="produto-row-anim"
+              style={{
+                borderBottom: "1px solid #374151",
+                animationDelay: `${0.5 + idx * 0.5}s`
+              }}
+            >
               <td style={{ padding: "10px" }}>{p.produto}</td>
               <td style={{ padding: "10px" }}>{p.quantidade}</td>
               <td style={{ padding: "10px" }}>{formatCurrency(p.receita)}</td>
             </tr>
           ))}
         </tbody>
+        <style>{`
+          .produto-row-anim {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: produtoFadeIn 0.7s cubic-bezier(.23,1.02,.32,1) forwards;
+          }
+          @keyframes produtoFadeIn {
+            to {
+              opacity: 1;
+              transform: none;
+            }
+          }
+        `}</style>
       </table>
       {/* Paginação */}
       {totalPaginas > 1 && (
