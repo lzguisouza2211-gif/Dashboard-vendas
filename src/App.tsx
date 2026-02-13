@@ -13,6 +13,8 @@ import { MetricCard } from "./components/MetricCard";
 import { SalesByCategoryChart } from "./components/SalesByCategoryChart";
 import { SalesByMonthChart } from "./components/SalesByMonthChart";
 
+import { TopProductsTable } from "./components/TopProductsTable";
+
 function App() {
   // dados base
   const [dados, setDados] = useState<Venda[]>([]);
@@ -102,6 +104,12 @@ function App() {
       <div style={{ display: "flex", gap: "40px", marginTop: "40px" }}>
         <SalesByCategoryChart dados={dadosFiltrados} />
         <SalesByMonthChart dados={dadosFiltrados} />
+      </div>
+
+      {/* tabela de produtos */}
+      <div>
+        <TopProductsTable dados={dadosFiltrados} />
+
       </div>
     </div>
   );
