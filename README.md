@@ -225,7 +225,9 @@ A interface foi construída para funcionar em diferentes tamanhos de tela:
 
 Veja abaixo um exemplo de arquivo para testar o dashboard:
 
-[![Baixar arquivo de exemplo](https://img.shields.io/badge/Download%20Excel-%F0%9F%93%84%20dados--exemplo.xlsx-blue?style=for-the-badge)](./public/dados-exemplo.xlsx)
+> Para baixar o arquivo de exemplo, clique no botão abaixo. O download será iniciado automaticamente.
+
+[![Baixar arquivo de exemplo](https://img.shields.io/badge/Download%20Excel-%F0%9F%93%84%20dados--exemplo.xlsx-blue?style=for-the-badge)](https://github.com/lzguisouza2211-gif/Dashboard-vendas/raw/main/public/dados-exemplo.xlsx)
 
 Arquivo sugerido para simular o upload e visualizar as funcionalidades do sistema.
 
