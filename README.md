@@ -60,24 +60,68 @@ A aplicação permite:
 
 ## 🧠 Etapas do Desenvolvimento
 
-O projeto foi desenvolvido seguindo as etapas abaixo, conforme ordem dos commits:
+O projeto foi desenvolvido de forma incremental, seguindo uma evolução lógica desde a leitura dos dados até a construção completa do dashboard.
 
-1. Setup inicial do projeto React com Vite
-2. Implementação do upload e leitura de arquivo Excel
-3. Tipagem e limpeza dos dados do Excel
-4. Implementação dos cards de métricas do dashboard
-5. Implementação dos gráficos de vendas por categoria e por mês
-6. Implementação de filtros reativos e filtros automáticos com ordenação de meses
-7. Implementação da tabela de produtos mais vendidos com ranking
-8. Implementação do layout, header, upload section e filter bar
-9. Padronização dos nomes para português sem acento, melhorias de responsividade, UX, mensagens de erro, gráficos e persistência dos dados no dashboard
-10. Correção da sincronização dos selects de filtro
-11. Adiciona animação sequencial nos cards e tabela de produtos mais vendidos
-12. Ajustes e correções no README
+### 1. Configuração do projeto
+- Setup inicial com Vite + React + TypeScript
+- Estruturação das pastas e organização base do projeto
 
-Cada etapa foi registrada em commits para facilitar o acompanhamento do desenvolvimento e garantir transparência na evolução do projeto.
+### 2. Leitura e processamento do Excel
+- Implementação do upload de arquivos `.xlsx` e `.xls`
+- Leitura do arquivo com SheetJS (XLSX)
+- Conversão dos dados para JSON
+- Tipagem dos dados com TypeScript
+- Limpeza e normalização das informações
 
----
+### 3. Modelagem e tratamento dos dados
+- Padronização dos dados importados
+- Normalização de categorias e valores
+- Organização da estrutura de dados para análise
+- Criação das funções de agregação e cálculo
+
+### 4. Implementação das métricas do dashboard
+- Receita total
+- Total de pedidos
+- Ticket médio
+- Componentização dos cards de métricas
+
+### 5. Visualização de dados
+- Gráfico de vendas por categoria
+- Gráfico de vendas por mês
+- Formatação de valores e percentuais
+- Padronização visual dos gráficos
+
+### 6. Filtros e interatividade
+- Implementação de filtros reativos por categoria e mês
+- Atualização dinâmica das métricas e gráficos
+- Ordenação correta dos meses
+- Sincronização dos estados de filtro
+
+### 7. Análise avançada dos dados
+- Implementação do ranking de produtos mais vendidos
+- Tabela dinâmica com agregação de dados
+- Cálculo de quantidade e receita por produto
+
+### 8. Estrutura e layout da interface
+- Criação do layout principal do dashboard
+- Implementação do header e organização das seções
+- Criação da área de upload e barra de filtros
+- Organização visual dos componentes
+
+### 9. Experiência do usuário (UX)
+- Implementação de estados de loading e empty state
+- Tratamento de erros de upload e leitura
+- Mensagens amigáveis ao usuário
+- Persistência dos dados no navegador
+- Melhorias de responsividade
+
+### 10. Otimizações e melhorias
+- Padronização de nomenclatura do código
+- Melhorias de performance com useMemo
+- Ajustes de comportamento e estabilidade
+- Refinamentos visuais e ajustes finais
+
+----
 
 ## 🏗 Arquitetura e Organização
 
@@ -174,6 +218,16 @@ A interface foi construída para funcionar em diferentes tamanhos de tela:
 - Gráficos reorganizados em telas menores
 - Cards reorganizados automaticamente
 - Evita overflow horizontal
+
+---
+
+## 📁 Arquivo de Exemplo
+
+Veja abaixo um exemplo de arquivo para testar o dashboard:
+
+[![Baixar arquivo de exemplo](https://img.shields.io/badge/Download%20Excel-%F0%9F%93%84%20dados--exemplo.xlsx-blue?style=for-the-badge)](./public/dados-exemplo.xlsx)
+
+Arquivo sugerido para simular o upload e visualizar as funcionalidades do sistema.
 
 ---
 
