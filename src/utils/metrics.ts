@@ -18,18 +18,15 @@ export function calcularTicketMedio(dados: Venda[]): number {
   return receita / dados.length;
 }
 
-// vendas por categoria (para gráfico pizza)
+// vendas por categoria (para grafico pizza)
 export function vendasPorCategoria(dados: Venda[]) {
   const agrupado: Record<string, number> = {};
-
   dados.forEach((item) => {
     if (!agrupado[item.categoria]) {
       agrupado[item.categoria] = 0;
     }
-
     agrupado[item.categoria] += item.valor;
   });
-
   return Object.entries(agrupado).map(([categoria, total]) => ({
     categoria,
     total,

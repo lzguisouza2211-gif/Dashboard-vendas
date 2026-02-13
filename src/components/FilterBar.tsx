@@ -11,6 +11,11 @@ export function FilterBar({
   setCategoriaFiltro,
   setMesFiltro
 }: Props) {
+  // Responsividade: media query inline para flexDirection e gap
+  // Adiciona overflowX: auto para evitar overflow horizontal
+  // Adiciona width: 100% para ocupar toda a largura
+  // Adiciona minWidth: 0 para evitar overflow de filhos
+  // Adiciona style para select e button para responsividade
   return (
     <div
       style={{
@@ -21,10 +26,13 @@ export function FilterBar({
         display: "flex",
         alignItems: "center",
         gap: "20px",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        width: "100%",
+        minWidth: 0,
+        overflowX: "auto"
       }}
     >
-      <strong>Filtros</strong>
+      <strong style={{ minWidth: 90 }}>Filtros</strong>
 
       <select
         onChange={(e) => setCategoriaFiltro(e.target.value)}
@@ -33,7 +41,10 @@ export function FilterBar({
           border: "1px solid #374151",
           color: "white",
           padding: "10px 14px",
-          borderRadius: "8px"
+          borderRadius: "8px",
+          minWidth: 140,
+          flex: "1 1 160px",
+          maxWidth: "100%"
         }}
       >
         <option value="todas">Todas categorias</option>
@@ -51,7 +62,10 @@ export function FilterBar({
           border: "1px solid #374151",
           color: "white",
           padding: "10px 14px",
-          borderRadius: "8px"
+          borderRadius: "8px",
+          minWidth: 120,
+          flex: "1 1 120px",
+          maxWidth: "100%"
         }}
       >
         <option value="todos">Todos meses</option>
@@ -70,11 +84,33 @@ export function FilterBar({
           color: "white",
           padding: "10px 16px",
           borderRadius: "8px",
-          cursor: "pointer"
+          cursor: "pointer",
+          minWidth: 120,
+          flex: "1 1 120px",
+          maxWidth: "100%"
+        }}
+        type="button"
+        tabIndex={0}
+        aria-label="Limpar filtros"
+        title="Limpar filtros"
+        onClick={() => {
+          setCategoriaFiltro("todas");
+          setMesFiltro("todos");
         }}
       >
         Limpar filtros
       </button>
+
+      {/* Responsividade extra: media query inline para telas < 768px */}
+      <style>{`
+        @media (max-width: 768px) {
+          .filterbar-responsive {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

@@ -21,12 +21,13 @@ function parseNumber(value: any): number {
   return Number(String(value).trim()) || 0;
 }
 
-// normaliza texto → remove espaços e capitaliza
+// normaliza texto → remove espaços, acentos e capitaliza
 function normalizeText(value: any): string {
   if (!value) return "";
 
-  const text = String(value).trim().toLowerCase();
-
+  let text = String(value).trim().toLowerCase();
+  // Remove acentos
+  text = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
