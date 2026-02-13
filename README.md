@@ -67,11 +67,13 @@ O projeto foi desenvolvido seguindo as etapas abaixo, conforme ordem dos commits
 3. Tipagem e limpeza dos dados do Excel
 4. Implementação dos cards de métricas do dashboard
 5. Implementação dos gráficos de vendas por categoria e por mês
-6. Implementação de filtros reativos e automáticos com ordenação de meses
+6. Implementação de filtros reativos e filtros automáticos com ordenação de meses
 7. Implementação da tabela de produtos mais vendidos com ranking
 8. Implementação do layout, header, upload section e filter bar
-9. Padronização dos nomes para português sem acento, melhorias de responsividade, UX, mensagens de erro, gráficos e persistência dos dados
+9. Padronização dos nomes para português sem acento, melhorias de responsividade, UX, mensagens de erro, gráficos e persistência dos dados no dashboard
 10. Correção da sincronização dos selects de filtro
+11. Adiciona animação sequencial nos cards e tabela de produtos mais vendidos
+12. Ajustes e correções no README
 
 Cada etapa foi registrada em commits para facilitar o acompanhamento do desenvolvimento e garantir transparência na evolução do projeto.
 
