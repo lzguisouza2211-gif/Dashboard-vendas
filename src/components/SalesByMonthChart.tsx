@@ -69,7 +69,7 @@ export function SalesByMonthChart({ dados }: Props) {
             fill="#3b82f6"
             radius={[6, 6, 0, 0]}
             animationBegin={0}
-            animationDuration={1200}
+            animationDuration={2500}
             animationEasing="ease-out"
           />
         </BarChart>

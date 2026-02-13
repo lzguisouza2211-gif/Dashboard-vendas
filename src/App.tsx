@@ -187,17 +187,17 @@ function App() {
                 <MetricCard
                   title="Receita Total"
                   value={formatCurrency(receitaTotal)}
-                  delay={0.20}
+                  delay={0.3}
                 />
                 <MetricCard
                   title="Total de Pedidos"
                   value={totalPedidos}
-                  delay={0.60}
+                  delay={0.6}
                 />
                 <MetricCard
                   title="Ticket Médio"
                   value={formatCurrency(ticketMedio)}
-                  delay={1.00}
+                  delay={0.9}
                 />
               </div>
 

@@ -117,6 +117,9 @@ export function SalesByCategoryChart({ dados }: Props) {
             outerRadius={120}
             label={renderLabel}
             labelLine={true}
+            animationBegin={0}
+            animationDuration={2500}
+            animationEasing="ease-out"
           >
             {data.map((d, index) => {
               const cat = padronizarCategoria(d.categoria);
