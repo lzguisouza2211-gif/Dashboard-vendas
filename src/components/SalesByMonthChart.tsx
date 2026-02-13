@@ -18,6 +18,30 @@ type Props = {
 export function SalesByMonthChart({ dados }: Props) {
   const data = vendasPorMes(dados);
 
+  // Só renderiza o gráfico se houver dados
+  if (!data || data.length === 0) {
+    return (
+      <div
+        style={{
+          background: "#111827",
+          padding: "20px",
+          borderRadius: "12px",
+          width: "100%",
+          height: "400px",
+          border: "none",
+          outline: "none",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#fff",
+          fontWeight: 500
+        }}
+      >
+        Nenhum dado para exibir o gráfico.
+      </div>
+    );
+  }
+
   return (
     <div
       style={{
@@ -25,14 +49,14 @@ export function SalesByMonthChart({ dados }: Props) {
         padding: "20px",
         borderRadius: "12px",
         width: "100%",
-        height: "500px",
+        height: "400px",
         border: "none",
         outline: "none"
       }}
     >
       <h3>Vendas por Mês</h3>
 
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height={320} minWidth={200} minHeight={200}>
         <BarChart data={data} style={{ outline: "none", border: "none" }}>
           <XAxis dataKey="mes" />
           <YAxis />

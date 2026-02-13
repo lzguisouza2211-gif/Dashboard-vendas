@@ -3,9 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #fff !important;
+  background-color: #020617 !important;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,9 +24,9 @@ a:hover {
 body {
   margin: 0;
   min-height: 100vh;
-  background: #020617;
+  color: #fff !important;
+  background: #020617 !important;
 }
-
 
 h1 {
   font-size: 3.2em;
@@ -55,14 +54,15 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #fff !important;
+    background-color: #020617 !important;
   }
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #f9f9f9;
+    color: #fff !important;
   }
 }
 
@@ -72,5 +72,18 @@ button:focus-visible {
 
 html, body {
   overflow-x: hidden;
+}
+
+/* Força cor branca para textos principais independentemente do modo do navegador */
+:root {
+  color: #fff !important;
+  background-color: #020617 !important;
+}
+body {
+  color: #fff !important;
+  background: #020617 !important;
+}
+h1, h2, h3, h4, h5, h6, p, span, td, th, label, input, select, option, div {
+  color: #fff !important;
 }
 
